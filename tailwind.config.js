@@ -7,7 +7,7 @@ module.exports = {
     nude: '#d8b4a0', 
     white: '#ffffff', 
     black: '#000000', 
-    brown: '#8b4513',
+    brown: '#D2691E',
   },
 
 
