@@ -3,7 +3,7 @@ import logo from '../images/logo.png';
 
 const Sidebar = () => {
   return (
-    <aside className="w-64 h-screen bg-brown text-white fixed flex flex-col justify-between p-6">
+    <aside className="w-64 h-screen bg-black text-white fixed flex flex-col justify-between p-6">
       {/* Logo */}
       <div className="text-center mb-8">
         <img src={logo} alt="Mel-read" className="h-16 mx-auto mb-4" />
