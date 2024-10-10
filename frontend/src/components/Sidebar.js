@@ -25,7 +25,7 @@ const Sidebar = () => {
               <li className="hover:bg-nude p-2 rounded">Drama</li>
               <li className="hover:bg-nude p-2 rounded">History</li>
               <li className="hover:bg-nude p-2 rounded">Educational</li>
-              <li className="hover:bg-nude p-2 rounded">Personal Improvement</li>
+              <li className="hover:bg-nude p-2 rounded">Self-development</li>
             </ul>
           </li>
         </ul>
