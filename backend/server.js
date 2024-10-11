@@ -13,6 +13,20 @@ app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
 
+// Route to get all books
+app.get('/api/books', (req, res) => {
+    const query = 'SELECT * FROM books'; // Fetch all books from the 'books' table
+    db.query(query, (err, results) => {
+      if (err) {
+        console.error('Error fetching books: ', err);
+        res.status(500).json({ message: 'Server error' });
+      } else {
+        res.json(results); // Send the results back to the client
+      }
+    });
+  });
+  
+
 // Route to get all books from the database
 app.get('/books', (req, res) => {
   const query = 'SELECT * FROM books';  // SQL query to get all books
