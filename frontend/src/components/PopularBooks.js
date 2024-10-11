@@ -1,37 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 const PopularBooks = () => {
   const [books, setBooks] = useState([]);
 
+  // Fetch book data from the backend
   useEffect(() => {
-    // Fetching data from Google Books API
-    axios
-      .get('https://www.googleapis.com/books/v1/volumes?q=bestsellers')
-      .then((response) => {
-        const bookData = response.data.items.map((item) => ({
-          title: item.volumeInfo.title,
-          rating: item.volumeInfo.averageRating || 'No rating',
-          image: item.volumeInfo.imageLinks?.thumbnail || 'https://via.placeholder.com/150', // fallback if no image
-          authors: item.volumeInfo.authors?.join(', ') || 'Unknown Author',
-        }));
-        setBooks(bookData);
+    fetch('http://localhost:5000/api/books')
+      .then(response => response.json())
+      .then(data => {
+        setBooks(data);
       })
-      .catch((error) => {
-        console.error('Error fetching data from Google Books API', error);
-      });
+      .catch(error => console.error('Error fetching books:', error));
   }, []);
 
   return (
     <section className="my-8 p-4">
       <h2 className="text-3xl font-bold mb-4">Popular Books</h2>
       <div className="grid grid-cols-4 gap-4">
-        {books.map((book, index) => (
-          <div key={index} className="bg-white p-4 rounded-lg shadow-lg">
-            <img src={book.image} alt={book.title} className="w-full h-40 object-cover mb-4" />
+        {books.map((book) => (
+          <div key={book.id} className="bg-white p-4 rounded-lg shadow-lg">
+            <img
+              src={book.cover_image}  // Assuming you have a 'cover_image' column
+              alt={book.title}
+              className="w-full h-40 object-cover mb-4"
+            />
             <h3 className="text-xl font-bold">{book.title}</h3>
-            <p className="text-sm">Rating: {book.rating}</p>
-            <p className="text-sm">Author(s): {book.authors}</p>
+            <p className="text-sm">Published: {book.published_date}</p>
           </div>
         ))}
       </div>
