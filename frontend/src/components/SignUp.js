@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
+  const navigate = useNavigate(); // Use useNavigate hook
 
-  const handleSignUp = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:5000/api/signup', {
+    const response = await fetch('http://localhost:5000/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -14,19 +16,22 @@ const SignUp = () => {
     });
 
     if (response.ok) {
-      console.log('Sign up successful');
-      // Navigate to login or other relevant page
+      const data = await response.json();
+      console.log('Registration successful', data);
+      // Redirect to login after successful registration
+      navigate('/login');
     } else {
-      console.error('Sign up failed');
+      console.error('Registration failed');
+      // Handle registration error
     }
   };
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form onSubmit={handleSignUp} className="bg-white p-8 rounded shadow-md w-1/3">
+      <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-1/3">
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
         <div className="mb-4">
-          <label htmlFor="username" className="block mb-2">Username</label>
+          <label className="block mb-2" htmlFor="username">Username</label>
           <input
             type="text"
             id="username"
@@ -37,7 +42,7 @@ const SignUp = () => {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="password" className="block mb-2">Password</label>
+          <label className="block mb-2" htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -47,7 +52,17 @@ const SignUp = () => {
             required
           />
         </div>
-        <button type="submit" className="bg-black text-white py-2 px-4 rounded">Sign Up</button>
+        <div className="flex justify-between">
+          <button type="submit" className="bg-black text-white py-2 px-4 rounded">
+            Sign Up
+          </button>
+          <button 
+            type="button" 
+            onClick={() => navigate('/login')} 
+            className="bg-gray-500 text-white py-2 px-4 rounded ml-4">
+            Go to Login
+          </button>
+        </div>
       </form>
     </div>
   );
