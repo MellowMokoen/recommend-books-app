@@ -24,16 +24,14 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-// User login
+/// User login
 router.post('/login', (req, res) => {
-  // User login route
-app.post('/api/login', (req, res) => {
   const { username, password } = req.body;
 
   const query = 'SELECT * FROM users WHERE username = ?';
   db.query(query, [username], async (err, results) => {
     if (err || results.length === 0) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ message: 'You need to sign up first' });
     }
 
     const user = results[0];
@@ -46,7 +44,6 @@ app.post('/api/login', (req, res) => {
     const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   });
-});
 });
 
 module.exports = router;

@@ -8,11 +8,11 @@ module.exports = {
     white: '#ffffff', 
     black: '#000000', 
     brown: '#D2691E',
+    blue:'#1c9ad6',
   },
 
-
       fontFamily: {
-        sans: ['Jost', 'sans-serif'],
+        sans: ['Roboto'],
       },
     },
   },

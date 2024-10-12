@@ -43,12 +43,12 @@ const PopularBooks = () => {
         placeholder="Search for books or authors..."
         value={searchTerm}
         onChange={handleSearch}
-        className="w-2/3 p-3 rounded-lg shadow-lg text-brown mb-16 p-2 border border-gray-300 rounded"
+        className="w-2/3 p-3 rounded-lg shadow-lg text-brown mb-24 p-2 border border-gray-300 rounded"
       />
     </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-8">
         {filteredBooks.map((book) => (
-          <div key={book.id} className="bg-white p-4 rounded-lg shadow-lg">
+          <div key={book.id} className="bg-white p-3 mx-4 rounded-lg shadow-lg">
             <div className="flex justify-center">
               <img
                 src={book.cover_image || 'http://localhost:5000/uploads/placeholder.jpg'}
@@ -57,7 +57,7 @@ const PopularBooks = () => {
               />
             </div>
             <h3 className="text-xl font-bold">{book.title}</h3>
-            <p className="text-sm">Published: {book.published_date}</p>
+            
             <button
               onClick={() => handleReadMore(book)}
               className="mt-2 bg-nude text-black py-1 px-2 rounded"
@@ -69,18 +69,29 @@ const PopularBooks = () => {
       </div>
 
       {selectedBook && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-4 rounded shadow-lg w-1/3">
-            <span className="cursor-pointer" onClick={closeModal}>&times;</span>
-            <h2>{selectedBook.title}</h2>
-            <p>Author: {selectedBook.author}</p>
-            <p>Category: {selectedBook.category}</p>
-            <p>Published Date: {selectedBook.published_date}</p>
-            <img src={selectedBook.cover_image} alt={selectedBook.title} className="w-50 h-40 object-cover mb-4" />
-            <p>Description here...</p>
-          </div>
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="bg-nude text-black p-4 rounded shadow-lg w-1/2 flex flex-col">
+      <div className="flex">
+      <span className="cursor-pointer mr-6 text-black font-bold text-2xl" onClick={closeModal}>&times;</span>
+        <img src={selectedBook.cover_image} alt={selectedBook.title} className="w-1/4 h-auto object-cover mr-4 border-2 border-black shadow-lg rounded" />
+        <div className="flex flex-col">
+        <h2 className="text-xl font-bold">{selectedBook.title}</h2>
+          <p className="font-semibold">Author: <span className="font-normal">{selectedBook.author}</span></p>
+          <p className="font-semibold">Category: <span className="font-normal">{selectedBook.category}</span></p>
+          <p className="font-semibold">Published Date: <span className="font-normal">{selectedBook.published_date}</span></p>
+          <p className="font-semibold mt-4">Overview:</p>
+          <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+
         </div>
-      )}
+      </div>
+     
+      
+    </div>
+  </div>
+)}
+
+
+
     </section>
   );
 };
