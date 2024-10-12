@@ -9,7 +9,7 @@ const HeroBanner = ({ onSearch }) => {
 
   return (
     <section className="bg-nude h-96 flex flex-col justify-center items-center text-center">
-      <h1 className="text-5xl font-bold text-white mb-4">Find Your Next Favorite Book</h1>
+      <h1 className="text-5xl font-bold text-white mb-4">New Released Books</h1>
       
     </section>
   );

@@ -36,14 +36,16 @@ const PopularBooks = () => {
 
   return (
     <section className="my-8 p-4">
-      <h2 className="text-3xl font-bold mb-4">Popular Books</h2>
+    <div className="flex flex-col justify-center items-center text-center">
+      <h2 className="text-3xl font-bold mb-4">Find Your Next Favorite Book</h2>
       <input
         type="text"
         placeholder="Search for books or authors..."
         value={searchTerm}
         onChange={handleSearch}
-        className="mb-4 w-full p-2 border border-gray-300 rounded"
+        className="w-2/3 p-3 rounded-lg shadow-lg text-brown mb-16 p-2 border border-gray-300 rounded"
       />
+    </div>
       <div className="grid grid-cols-4 gap-4">
         {filteredBooks.map((book) => (
           <div key={book.id} className="bg-white p-4 rounded-lg shadow-lg">

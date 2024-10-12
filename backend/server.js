@@ -29,6 +29,11 @@ app.get('/api/books', (req, res) => {
       }
     });
   });
+
+const userRoutes = require('./routes/user');
+
+app.use('/api', userRoutes);
+
   
 
 // Route to get all books from the database
