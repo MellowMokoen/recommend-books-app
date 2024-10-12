@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import Sidebar from './components/Sidebar';
 import HeroBanner from './components/HeroBanner';
 import AuthorsSection from './components/AuthorsSection';
