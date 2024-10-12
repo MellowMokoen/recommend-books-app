@@ -4,25 +4,24 @@ const jwt = require('jsonwebtoken');
 const router = express.Router();
 const db = require('../db'); // Import your MySQL connection
 
-// User registration
-router.post('/register', async (req, res) => {
-  const bcrypt = require('bcrypt');
-
-// User registration route
-app.post('/api/register', async (req, res) => {
+// User signup
+router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  
-  const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
-  db.query(query, [username, hashedPassword], (err, results) => {
-    if (err) {
-      console.error('Error creating user:', err);
-      return res.status(400).json({ message: 'Error creating user' });
-    }
-    res.status(201).json({ message: 'User created' });
-  });
-});
 
+  try {
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    db.query(query, [username, hashedPassword], (err, results) => {
+      if (err) {
+        console.error('Error creating user:', err);
+        return res.status(400).json({ message: 'Error creating user' });
+      }
+      res.status(201).json({ message: 'User created' });
+    });
+  } catch (error) {
+    console.error('Error during signup:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 // User login
