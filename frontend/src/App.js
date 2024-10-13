@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import HeroBanner from './components/HeroBanner';
 import PopularBooks from './components/PopularBooks';
+import CoverPage from './components/CoverPage';
 import Login from './components/LogIn';
 import SignUp from './components/SignUp'; 
 
@@ -20,9 +21,10 @@ function App() {
       <Sidebar onCategorySelect={handleCategorySelect} />
         <div className="ml-64">
           <Routes>
+          <Route path="/" element={<CoverPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/" element={
+            <Route path="/home" element={
               <>
                 <HeroBanner />
                 <PopularBooks selectedCategory={selectedCategory} />

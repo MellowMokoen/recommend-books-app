@@ -31,7 +31,7 @@ const Rating = ({ book_id, user_id }) => {
 
   return (
     <div>
-      <h3 className='mt-6 font-bold'>Rate this book:</h3>
+      <h3 className='mt-6 font-bold'>Leave your rating:</h3>
       <div className="stars">
         {[1, 2, 3, 4, 5].map((value) => (
           <span 
