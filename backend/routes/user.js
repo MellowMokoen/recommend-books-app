@@ -46,4 +46,25 @@ router.post('/login', (req, res) => {
   });
 });
 
+// Rate a book
+router.post('/rate', async (req, res) => {
+  const { book_id, rating_value, user_id } = req.body;
+
+  // Ensure bookId and rating are provided
+  if (!book_id || !rating_value) {
+    return res.status(400).json({ message: 'Book ID and rating are required.' });
+  }
+
+  // Insert into your database
+  const query = 'INSERT INTO ratings (book_id, rating_value, user_id) VALUES (?, ?, ?)';
+  db.query(query, [book_id, rating_value, user_id], (err) => {
+    if (err) {
+      console.error('Error submitting rating:', err);
+      return res.status(500).json({ message: 'Error submitting rating' });
+    }
+    res.status(201).json({ message: 'Rating submitted successfully' });
+  });
+});
+
+
 module.exports = router;

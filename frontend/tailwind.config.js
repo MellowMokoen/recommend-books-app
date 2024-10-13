@@ -12,7 +12,7 @@ module.exports = {
   },
 
       fontFamily: {
-        sans: ['Roboto'],
+       sans: ['Kalam', 'sans-serif']
       },
     },
   },

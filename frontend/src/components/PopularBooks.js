@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Rating from './Rating';
 
 const PopularBooks = () => {
   const [books, setBooks] = useState([]);
@@ -79,6 +80,7 @@ const PopularBooks = () => {
           <p className="font-semibold">Author: <span className="font-normal">{selectedBook.author}</span></p>
           <p className="font-semibold">Category: <span className="font-normal">{selectedBook.category}</span></p>
           <p className="font-semibold">Published Date: <span className="font-normal">{selectedBook.published_date}</span></p>
+          <Rating book_id={selectedBook.id} />
           <p className="font-semibold mt-4">Overview:</p>
           <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 

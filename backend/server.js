@@ -34,8 +34,6 @@ const userRoutes = require('./routes/user');
 
 app.use('/api', userRoutes);
 
-  
-
 // Route to get all books from the database
 app.get('/books', (req, res) => {
   const query = 'SELECT * FROM books';  // SQL query to get all books
