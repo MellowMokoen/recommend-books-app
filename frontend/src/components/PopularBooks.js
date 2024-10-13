@@ -44,7 +44,7 @@ const PopularBooks = () => {
         placeholder="Search for books or authors..."
         value={searchTerm}
         onChange={handleSearch}
-        className="w-2/3 p-3 rounded-lg shadow-lg text-brown mb-24 p-2 border border-gray-300 rounded"
+        className="w-2/3 p-3 rounded-lg shadow-lg text-black mb-24 p-2 border border-nude rounded"
       />
     </div>
       <div className="grid grid-cols-4 gap-8">
@@ -61,7 +61,7 @@ const PopularBooks = () => {
             
             <button
               onClick={() => handleReadMore(book)}
-              className="mt-2 bg-nude text-black py-1 px-2 rounded"
+              className="mt-2 bg-nude text-white py-1 px-2 shadow-lg rounded-full"
             >
               Read More
             </button>
