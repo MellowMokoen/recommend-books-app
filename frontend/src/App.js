@@ -7,6 +7,7 @@ import PopularBooks from './components/PopularBooks';
 import CoverPage from './components/CoverPage';
 import Login from './components/LogIn';
 import SignUp from './components/SignUp'; 
+import AboutUs from './components/AboutUs';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<CoverPage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/about" element={<AboutUs />} />
             <Route path="/home" element={
               <>
                 <HeroBanner />
