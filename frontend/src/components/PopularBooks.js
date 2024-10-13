@@ -59,7 +59,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
         placeholder="Search for books or authors..."
         value={searchTerm}
         onChange={handleSearch}
-        className="w-2/3 p-3 rounded-lg shadow-lg text-black mb-24 border border-nude"
+        className="w-2/3 p-3 rounded-lg shadow-lg text-black mb-24 border focus:outline-none border-nude"
       />
     </div>
       <div className="grid grid-cols-4 gap-8">
