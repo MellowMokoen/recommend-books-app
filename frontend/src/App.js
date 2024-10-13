@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import HeroBanner from './components/HeroBanner';
 import PopularBooks from './components/PopularBooks';
@@ -15,11 +15,14 @@ function App() {
     setSelectedCategory(category);
   };
 
+  const location = useLocation(); // Use this here in App component
+  const shouldShowSidebar = !['/', '/login', '/signup'].includes(location.pathname);
+
+
   return (
-    <Router>
       <div className="App">
-      <Sidebar onCategorySelect={handleCategorySelect} />
-        <div className="ml-64">
+      {shouldShowSidebar && <Sidebar onCategorySelect={handleCategorySelect} />}
+      <div className={shouldShowSidebar ? 'ml-64' : ''}>
           <Routes>
           <Route path="/" element={<CoverPage />} />
             <Route path="/login" element={<Login />} />
@@ -33,8 +36,13 @@ function App() {
           </Routes>
         </div>
       </div>
-    </Router>
   );
 }
 
-export default App;
+export default function RootApp() {
+  return (
+    <Router>
+      <App />
+    </Router>
+  );
+}
