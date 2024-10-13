@@ -20,19 +20,20 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
       <nav className="flex-grow">
         <ul>
           <li className="mb-4">
-            <Link to="/" onClick={handleHomeClick} className="block py-2 px-4 rounded-lg hover:bg-white">Home</Link>
+            <Link to="/" onClick={handleHomeClick} className="block py-2 px-2 rounded-full bg-nude text-black hover:bg-white">Home</Link>
           </li>
           <li className="relative mb-4">
-            <button className="block w-full text-left py-2 px-4 rounded-lg hover:bg-white">
+            <div className="block w-full text-left py-2 px-2 rounded-full bg-nude text-black hover:bg-white">
               Category
-            </button>
-            <ul className="ml-4 mt-2">
-              {['Romance', 'Drama', 'Thriller', 'Self-help', 'Fantasy'].map((category) => (
-                <li key={category} className="hover:bg-white p-2 rounded" onClick={() => onCategorySelect(category)}>
-                  {category}
-                </li>
-              ))}
-            </ul>
+            </div>
+            <ul className="ml-8 mt-2">
+               {['Romance', 'Drama', 'Thriller', 'Self-help', 'Fantasy'].map((category) => (
+              <li key={category} className="hover:bg-nude cursor-pointer hover:text-black p-2 rounded" onClick={() => onCategorySelect(category)}>
+                🤍 {category} 
+              </li>
+                ))}
+             </ul>
+
           </li>
         </ul>
       </nav>
