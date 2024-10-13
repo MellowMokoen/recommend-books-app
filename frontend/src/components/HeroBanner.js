@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+import background2 from '../images/background2.jpg'; 
 
-const HeroBanner = ({ onSearch }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const handleSearch = () => {
-    onSearch(searchTerm);
-  };
-
+const HeroBanner = () => {
   return (
-    <section className="bg-nude h-96 flex flex-col justify-center items-center text-center">
+    <section 
+      className="h-80 flex flex-col justify-center items-center text-center" 
+      style={{ 
+        backgroundImage: `url(${background2})`, 
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <h1 className="text-5xl font-bold text-white mb-4">New Released Books</h1>
-      
     </section>
   );
 };
