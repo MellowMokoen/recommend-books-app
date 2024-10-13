@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-route
 import Sidebar from './components/Sidebar';
 import HeroBanner from './components/HeroBanner';
 import PopularBooks from './components/PopularBooks';
-import CoverPage from './components/CoverPage';
-import Login from './components/LogIn';
-import SignUp from './components/SignUp'; 
-import AboutUs from './components/AboutUs';
+import CoverPage from './pages/CoverPage';
+import Login from './pages/LogIn';
+import SignUp from './pages/SignUp'; 
+import AboutUs from './pages/AboutUs';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
