@@ -27,7 +27,7 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
               Category
             </button>
             <ul className="ml-4 mt-2">
-              {['Romance', 'Drama', 'Thriller', 'Self-love', 'Fantasy'].map((category) => (
+              {['Romance', 'Drama', 'Thriller', 'Self-help', 'Fantasy'].map((category) => (
                 <li key={category} className="hover:bg-white p-2 rounded" onClick={() => onCategorySelect(category)}>
                   {category}
                 </li>

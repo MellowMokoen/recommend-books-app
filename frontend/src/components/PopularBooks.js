@@ -59,7 +59,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
         placeholder="Search for books or authors..."
         value={searchTerm}
         onChange={handleSearch}
-        className="w-2/3 p-3 rounded-lg shadow-lg text-black mb-24 p-2 border border-nude rounded"
+        className="w-2/3 p-3 rounded-lg shadow-lg text-black mb-24 border border-nude"
       />
     </div>
       <div className="grid grid-cols-4 gap-8">
@@ -94,7 +94,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
         <h2 className="text-xl font-bold">{selectedBook.title}</h2>
           <p className="font-semibold">Author: <span className="font-normal">{selectedBook.author}</span></p>
           <p className="font-semibold">Category: <span className="font-normal">{selectedBook.category}</span></p>
-          <p className="font-semibold">Published Date: <span className="font-normal">{selectedBook.published_date}</span></p>
+          <p className="font-semibold">Published Year: <span className="font-normal">{selectedBook.published_year}</span></p>
           <Rating book_id={selectedBook.id} />
           <p className="font-semibold mt-4">Overview:</p>
           <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
