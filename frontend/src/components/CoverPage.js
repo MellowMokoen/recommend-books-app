@@ -36,13 +36,13 @@ function CoverPage() {
       />
   
       <motion.button
-        className="mt-12 p-3 bg-black border-nude text-nude text-bold rounded-full shadow-lg"
+        className="mt-12 p-3 bg-nude text-black text-bold rounded-full shadow-xl"
         onClick={() => navigate('/login')}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         transition={{ duration: 0.2 }}
       >
-        Check recommendations out
+        Check new books out
       </motion.button>
     </div>
   </div>

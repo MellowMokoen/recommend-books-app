@@ -20,7 +20,7 @@ const Login = () => {
       const data = await response.json();
       console.log('Login successful', data);
       // Handle successful login (e.g., store token, redirect)
-      navigate('/');
+      navigate('/home');
     } else {
       const errorData = await response.json();
       setErrorMessage(errorData.message); // Display error message
@@ -59,7 +59,7 @@ const Login = () => {
         </button>
         <p className="text-sm text-center">
           Don't have an account?{' '}
-          <Link to="/signup" className="text-blue-500 hover:underline">Sign up</Link>
+          <Link to="/signup" className="rounded bg-black text-white py-2 px-4">Sign up</Link>
         </p>
       </form>
     </div>

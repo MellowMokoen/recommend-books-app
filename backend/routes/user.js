@@ -1,8 +1,9 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const SECRET_KEY = process.env.JWT_SECRET || 'yourSecretKeyHere';
 const router = express.Router();
-const db = require('../db'); // Import your MySQL connection
+const db = require('../db'); 
 
 // User signup
 router.post('/signup', async (req, res) => {
@@ -31,7 +32,7 @@ router.post('/login', (req, res) => {
   const query = 'SELECT * FROM users WHERE username = ?';
   db.query(query, [username], async (err, results) => {
     if (err || results.length === 0) {
-      return res.status(401).json({ message: 'You need to sign up first' });
+      return res.status(401).json({ message: 'Oh! Looks like you are new here🤍 Please sign up first!' });
     }
 
     const user = results[0];
@@ -41,7 +42,7 @@ router.post('/login', (req, res) => {
       return res.status(401).json({ message: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ username: user.username }, SECRET_KEY, { expiresIn: '1h' });
     res.json({ token });
   });
 });
