@@ -71,7 +71,7 @@ const PopularBooks = () => {
 
       {selectedBook && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-nude text-black p-4 rounded shadow-lg w-1/2 flex flex-col">
+    <div className="bg-white text-black p-4 rounded shadow-lg w-1/2 flex flex-col">
       <div className="flex">
       <span className="cursor-pointer mr-6 text-black font-bold text-2xl" onClick={closeModal}>&times;</span>
         <img src={selectedBook.cover_image} alt={selectedBook.title} className="w-1/4 h-auto object-cover mr-4 border-2 border-black shadow-lg rounded" />
