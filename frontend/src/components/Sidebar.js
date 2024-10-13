@@ -1,7 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
 
-const Sidebar = ({ onCategorySelect }) => {
+const Sidebar = ({ onCategorySelect, onSearchReset }) => {
+
+  const handleHomeClick = () => {
+    onCategorySelect(''); // Reset the category
+    onSearchReset(''); // Reset the search term
+  };
+
   return (
     <section className="w-64 h-screen bg-black text-nude font-bold fixed flex flex-col justify-between p-6">
       {/* Logo */}
@@ -13,7 +20,7 @@ const Sidebar = ({ onCategorySelect }) => {
       <nav className="flex-grow">
         <ul>
           <li className="mb-4">
-            <a href="#" className="block py-2 px-4 rounded-lg hover:bg-white">Home</a>
+            <Link to="/" onClick={handleHomeClick} className="block py-2 px-4 rounded-lg hover:bg-white">Home</Link>
           </li>
           <li className="relative mb-4">
             <button className="block w-full text-left py-2 px-4 rounded-lg hover:bg-white">

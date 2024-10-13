@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Rating from './Rating';
 
-const PopularBooks = ({ selectedCategory }) => {
+const PopularBooks = ({ selectedCategory, onSearchReset }) => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -17,6 +17,15 @@ const PopularBooks = ({ selectedCategory }) => {
       .catch(error => console.error('Error fetching books:', error));
   }, []);
 
+  useEffect(() => {
+    if (selectedCategory) {
+      const filtered = books.filter(book => book.category.toLowerCase() === selectedCategory.toLowerCase());
+      setFilteredBooks(filtered);
+    } else {
+      setFilteredBooks(books);
+    }
+  }, [selectedCategory, books]);
+
   const handleReadMore = (book) => {
     setSelectedBook(book);
   };
@@ -26,18 +35,20 @@ const PopularBooks = ({ selectedCategory }) => {
   };
 
   const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-   useEffect(() => {
-    // Filter books based on selectedCategory
-    const filtered = books.filter(book => 
-      (!selectedCategory || book.category === selectedCategory) &&
-      (book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.author.toLowerCase().includes(searchTerm.toLowerCase()))
+    const term = event.target.value.toLowerCase();
+    setSearchTerm(term);
+    const filtered = books.filter(book =>
+      book.title.toLowerCase().includes(term) ||
+      book.author.toLowerCase().includes(term)
     );
     setFilteredBooks(filtered);
-  }, [selectedCategory, searchTerm, books]);
+  };
+
+  const resetSearch = () => {
+    setSearchTerm('');
+    setFilteredBooks(books); // Reset to all books
+    onSearchReset(''); // Notify parent to reset search
+  };
 
   return (
     <section className="my-8 p-4">
