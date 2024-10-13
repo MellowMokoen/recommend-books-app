@@ -20,7 +20,12 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
       <nav className="flex-grow">
         <ul>
           <li className="mb-4">
-            <Link to="/" onClick={handleHomeClick} className="block py-2 px-2 rounded-full bg-nude text-black hover:bg-white">Home</Link>
+            <Link to="/home" onClick={handleHomeClick} className="block py-2 px-2 rounded-full bg-nude text-black hover:bg-white">Home</Link>
+          </li>
+          <li className="mb-4">
+          <button className="block w-full text-left py-2 px-2 rounded-full bg-nude text-black hover:bg-white">
+              About us
+            </button>
           </li>
           <li className="relative mb-4">
             <div className="block w-full text-left py-2 px-2 rounded-full bg-nude text-black hover:bg-white">
