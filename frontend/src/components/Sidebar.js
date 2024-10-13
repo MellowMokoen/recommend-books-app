@@ -1,13 +1,12 @@
 import React from 'react';
 import logo from '../images/logo.png';
 
-const Sidebar = () => {
+const Sidebar = ({ onCategorySelect }) => {
   return (
-    <aside className="w-64 h-screen bg-black text-nude font-bold fixed flex flex-col justify-between p-6">
+    <section className="w-64 h-screen bg-black text-nude font-bold fixed flex flex-col justify-between p-6">
       {/* Logo */}
       <div className="text-center mb-8">
         <img src={logo} alt="Mel-read" className="h-16 mx-auto mb-4" />
-       
       </div>
 
       {/* Sidebar Links */}
@@ -21,16 +20,16 @@ const Sidebar = () => {
               Category
             </button>
             <ul className="ml-4 mt-2">
-              <li className="hover:bg-white p-2 rounded">Romance</li>
-              <li className="hover:bg-white p-2 rounded">Drama</li>
-              <li className="hover:bg-white p-2 rounded">Thriller</li>
-              <li className="hover:bg-white p-2 rounded">Self-love</li>
-              <li className="hover:bg-white p-2 rounded">Fantasy</li>
+              {['Romance', 'Drama', 'Thriller', 'Self-love', 'Fantasy'].map((category) => (
+                <li key={category} className="hover:bg-white p-2 rounded" onClick={() => onCategorySelect(category)}>
+                  {category}
+                </li>
+              ))}
             </ul>
           </li>
         </ul>
       </nav>
-    </aside>
+    </section>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Rating from './Rating';
 
-const PopularBooks = () => {
+const PopularBooks = ({ selectedCategory }) => {
   const [books, setBooks] = useState([]);
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
@@ -26,14 +26,18 @@ const PopularBooks = () => {
   };
 
   const handleSearch = (event) => {
-    const term = event.target.value.toLowerCase();
-    setSearchTerm(term);
-    const filtered = books.filter(book =>
-      book.title.toLowerCase().includes(term) ||
-      book.author.toLowerCase().includes(term)
+    setSearchTerm(event.target.value);
+  };
+
+   useEffect(() => {
+    // Filter books based on selectedCategory
+    const filtered = books.filter(book => 
+      (!selectedCategory || book.category === selectedCategory) &&
+      (book.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchTerm.toLowerCase()))
     );
     setFilteredBooks(filtered);
-  };
+  }, [selectedCategory, searchTerm, books]);
 
   return (
     <section className="my-8 p-4">
