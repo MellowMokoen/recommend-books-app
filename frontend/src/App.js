@@ -22,8 +22,11 @@ function App() {
 
   return (
       <div className="App">
+    
       {shouldShowSidebar && <Sidebar onCategorySelect={handleCategorySelect} />}
+  
       <div className={shouldShowSidebar ? 'ml-64' : ''}>
+  
           <Routes>
           <Route path="/" element={<CoverPage />} />
             <Route path="/login" element={<Login />} />
@@ -36,7 +39,9 @@ function App() {
               </>
             } />
           </Routes>
+      
         </div>
+       
       </div>
   );
 }

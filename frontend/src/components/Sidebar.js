@@ -1,8 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../images/logo.png';
 
 const Sidebar = ({ onCategorySelect, onSearchReset }) => {
+
+  const navigate = useNavigate();
 
   const handleHomeClick = () => {
     onCategorySelect(''); // Reset the category
@@ -23,10 +25,13 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
             <Link to="/home" onClick={handleHomeClick} className="block py-2 px-2 rounded-full bg-nude text-black hover:bg-white">Home</Link>
           </li>
           <li className="mb-4">
-          <button className="block w-full text-left py-2 px-2 rounded-full bg-nude text-black hover:bg-white">
-              About us
-            </button>
-          </li>
+        <button
+          className="block w-full text-left py-2 px-2 rounded-full bg-nude text-black hover:bg-white"
+          onClick={() => navigate('/about')} 
+        >
+          About us
+        </button>
+      </li>
           <li className="relative mb-4">
             <div className="block w-full text-left py-2 px-2 rounded-full bg-nude text-black hover:bg-white">
               Category
