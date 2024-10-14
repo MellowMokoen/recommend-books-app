@@ -28,7 +28,8 @@ const FavoriteBooks = () => {
 
   return (
     <section className="p-4">
-      <h2 className="text-3xl font-bold text-nude mb-10">My Favorite Books</h2>
+      <h2 style={{ textDecoration: 'overline' }} className="text-3xl mt-6 font-bold text-center text-nude mb-10">🤍My Favorite Books</h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {favorites.map((book) => (
           <div key={book.id} className="bg-white p-3 mx-4 rounded-lg shadow-md">
@@ -43,7 +44,7 @@ const FavoriteBooks = () => {
             <p>{book.author}</p>
             <button
               onClick={() => handleRemoveFavorite(book.id)}
-              className="mt-2 bg-nude text-white py-1 px-2 shadow-lg rounded-full"
+              className="mt-2 bg-nude text-black py-1 px-2 shadow-lg rounded-full"
             >
               Remove from Favorites
             </button>
