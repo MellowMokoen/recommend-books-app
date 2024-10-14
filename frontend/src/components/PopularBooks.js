@@ -86,17 +86,20 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
 
       {selectedBook && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-white text-black p-4 rounded shadow-xl w-1/2 flex flex-col">
+    <div className="bg-nude text-black p-4 rounded shadow-xl w-1/2 flex flex-col">
       <div className="flex">
       <span className="cursor-pointer mr-6 text-black font-bold text-2xl" onClick={closeModal}>&times;</span>
         <img src={selectedBook.cover_image} alt={selectedBook.title} className="w-1/4 h-auto object-cover mr-4 border-2 border-black shadow-lg rounded" />
         <div className="flex flex-col">
-        <h2 className="text-xl font-bold">{selectedBook.title}</h2>
+        <h2 className="font-semibold">Title: <span className="text-xl font-bold">{selectedBook.title}</span></h2>
           <p className="font-semibold">Author: <span className="font-normal">{selectedBook.author}</span></p>
           <p className="font-semibold">Category: <span className="font-normal">{selectedBook.category}</span></p>
           <p className="font-semibold">Published Year: <span className="font-normal">{selectedBook.published_year}</span></p>
-          <p className="font-semibold">Ratings: <span className="font-normal">{selectedBook.rating} stars ★</span></p>
-          <Rating book_id={selectedBook.id} />
+          <p className="font-semibold">
+            Rating: <span className="font-normal">{selectedBook.rating} stars ★ ({selectedBook.rating_count})</span>
+          </p>
+             <Rating book_id={selectedBook.id} />
+
           <p className="font-semibold mt-4">Overview:</p>
           <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
 
