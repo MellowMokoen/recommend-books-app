@@ -20,7 +20,7 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
     localStorage.removeItem('user'); // Clear user data
     // Optionally dispatch a Redux action here
     // dispatch(logoutAction());
-    navigate('/login'); // Redirect to the login page
+    navigate('/'); // Redirect to the login page
   };
 
   return (
