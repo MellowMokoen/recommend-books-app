@@ -111,7 +111,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
               onClick={() => handleReadMore(book)}
               className="mt-2 bg-nude text-black py-1 px-2 shadow-lg rounded-full"
             >
-              Read More
+              See More
             </button>
 
             {addedToFavorites.has(book.id) ? ( // Check if book is added
@@ -119,7 +119,8 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
             ) : (
               <button
                 onClick={() => handleAddToFavorites(book)}
-                className="mt-2 ml-2 text-red-500"
+                className="mt-2 ml-2 text-lg hover:text-xl text-red-500"
+                title='add to favorites'
               >
                 ♥
               </button>
