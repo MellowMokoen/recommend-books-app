@@ -16,9 +16,16 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
     onSearchReset(''); // Reset the search term
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('user'); // Clear user data
+    // Optionally dispatch a Redux action here
+    // dispatch(logoutAction());
+    navigate('/login'); // Redirect to the login page
+  };
+
   return (
     <div>
-      {/* Hamburger Icon */}
+     
       <button
         className="md:hidden p-2"
         onClick={toggleSidebar}
@@ -89,11 +96,19 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
                 My Favorites
               </Link>
             </li>
+            <li className="mb-4">
+              <button
+                onClick={handleLogout}
+                className="block w-full text-left py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
+              >
+                Log Out
+              </button>
+            </li>
           </ul>
         </nav>
       </section>
 
-      {/* Overlay (optional) */}
+    
       {isOpen && <div className="fixed inset-0 bg-black opacity-50 z-10" onClick={toggleSidebar} />}
     </div>
   );
