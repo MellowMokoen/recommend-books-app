@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 const FavoriteBooks = () => {
   const [favorites, setFavorites] = useState([]);
 
+  // Fetch favorites on component mount
   useEffect(() => {
-    fetch('http://localhost:5000/api/favorites/1') // assuming user_id 1 for simplicity
+    fetch('http://localhost:5000/api/favorites/1') // Assuming user_id 1 for simplicity
       .then(response => response.json())
       .then(data => setFavorites(data))
       .catch(error => console.error('Error fetching favorites:', error));
   }, []);
+  
 
   const handleRemoveFavorite = (book_id) => {
     fetch(`http://localhost:5000/api/favorites/${book_id}`, {

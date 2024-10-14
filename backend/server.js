@@ -45,6 +45,7 @@ app.get('/books', (req, res) => {
   });
 });
 
+
 // Route to delete books from favorites
 app.delete('/api/favorites/:book_id', (req, res) => {
   const bookId = req.params.book_id;

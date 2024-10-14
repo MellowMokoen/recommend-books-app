@@ -7,6 +7,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
   const [selectedBook, setSelectedBook] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [favorites, setFavorites] = useState([]);
+  const [addedToFavorites, setAddedToFavorites] = useState(new Set()); 
 
   useEffect(() => {
     fetch('http://localhost:5000/api/books')
@@ -51,19 +52,35 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
     onSearchReset(''); // Notify parent to reset search
   };
 
-  // Function to add a book to favorites
+  useEffect(() => {
+    // Fetch favorites on mount
+    fetch('http://localhost:5000/api/favorites/1') // Assuming user_id 1 for simplicity
+      .then(response => response.json())
+      .then(data => {
+        setFavorites(data);
+        const favoritesSet = new Set(data.map(book => book.id)); // Create a Set of favorite book IDs
+        setAddedToFavorites(favoritesSet); // Update the addedToFavorites state
+      })
+      .catch(error => console.error('Error fetching favorites:', error));
+  }, []);
+
   const handleAddToFavorites = (book) => {
-    fetch('http://localhost:5000/api/favorites', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ user_id: 1, book_id: book.id }) // assuming user_id 1 for simplicity
-    })
-    .then(response => response.json())
-    .then(data => {
-      setFavorites([...favorites, book]);
-      alert('Added to favorites');
-    })
-    .catch(error => console.error('Error adding to favorites:', error));
+    if (!addedToFavorites.has(book.id)) { // Check if the book is already in favorites
+      fetch('http://localhost:5000/api/favorites', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user_id: 1, book_id: book.id }) // assuming user_id 1 for simplicity
+      })
+      .then(response => response.json())
+      .then(data => {
+        setFavorites(prev => [...prev, book]); // Update favorites
+        setAddedToFavorites(prev => new Set(prev).add(book.id)); // Add to favorites Set
+        alert('Added to favorites');
+      })
+      .catch(error => console.error('Error adding to favorites:', error));
+    } else {
+      alert('This book is already in your favorites!');
+    }
   };
 
   return (
@@ -97,12 +114,16 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
               Read More
             </button>
 
-            <button
-              onClick={() => handleAddToFavorites(book)}
-              className="mt-2 ml-2 text-red-500"
-            >
-              ♥
-            </button>
+            {addedToFavorites.has(book.id) ? ( // Check if book is added
+              <span className="mt-2 mx-2 text-sm text-green-500">Added to Favorites</span>
+            ) : (
+              <button
+                onClick={() => handleAddToFavorites(book)}
+                className="mt-2 ml-2 text-red-500"
+              >
+                ♥
+              </button>
+            )}
           </div>
         ))}
       </div>
