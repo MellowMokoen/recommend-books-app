@@ -48,7 +48,7 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
         </button>
 
         {/* Logo */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-4">
           <img src={logo} alt="Mel-read" className="h-16 mx-auto mb-4" />
         </div>
 
@@ -59,14 +59,14 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
               <Link
                 to="/home"
                 onClick={handleHomeClick}
-                className="block py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
+                className="block py-2 px-4 rounded-full text-center bg-nude text-black hover:bg-white transition duration-200"
               >
                 Home
               </Link>
             </li>
             <li className="mb-4">
               <button
-                className="block w-full text-left py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
+                className="block w-full text-center py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
                 onClick={() => navigate('/about')}
               >
                 About us
@@ -91,15 +91,15 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
             <li className="mb-4">
               <Link
                 to="/favorites"
-                className="block py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
+                className="block py-2 px-4 text-center rounded-full bg-nude text-black hover:bg-white transition duration-200"
               >
                 My Favorites
               </Link>
             </li>
-            <li className="mb-4">
+            <li className="mb-8">
               <button
                 onClick={handleLogout}
-                className="block w-full text-left py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
+                className="block w-full text-center py-2 px-4 rounded-full bg-nude text-black hover:bg-white transition duration-200"
               >
                 Log Out
               </button>
