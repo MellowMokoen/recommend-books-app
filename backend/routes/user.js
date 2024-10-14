@@ -89,4 +89,31 @@ router.post('/rate', async (req, res) => {
   });
 });
 
+// Add a book to favorites
+router.post('/favorites', async (req, res) => {
+  const { user_id, book_id } = req.body;
+  const query = 'INSERT INTO favorites (user_id, book_id) VALUES (?, ?)';
+  db.query(query, [user_id, book_id], (err) => {
+      if (err) {
+          console.error('Error adding to favorites:', err);
+          return res.status(500).json({ message: 'Error adding to favorites' });
+      }
+      res.status(201).json({ message: 'Book added to favorites' });
+  });
+});
+
+// Get user's favorites
+router.get('/favorites/:user_id', async (req, res) => {
+  const user_id = req.params.user_id;
+  const query = 'SELECT b.* FROM favorites f JOIN books b ON f.book_id = b.id WHERE f.user_id = ?';
+  db.query(query, [user_id], (err, results) => {
+      if (err) {
+          console.error('Error fetching favorites:', err);
+          return res.status(500).json({ message: 'Error fetching favorites' });
+      }
+      res.json(results);
+  });
+});
+
+
 module.exports = router;

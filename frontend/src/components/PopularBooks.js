@@ -6,6 +6,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
   const [filteredBooks, setFilteredBooks] = useState([]);
   const [selectedBook, setSelectedBook] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     fetch('http://localhost:5000/api/books')
@@ -50,6 +51,21 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
     onSearchReset(''); // Notify parent to reset search
   };
 
+  // Function to add a book to favorites
+  const handleAddToFavorites = (book) => {
+    fetch('http://localhost:5000/api/favorites', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: 1, book_id: book.id }) // assuming user_id 1 for simplicity
+    })
+    .then(response => response.json())
+    .then(data => {
+      setFavorites([...favorites, book]);
+      alert('Added to favorites');
+    })
+    .catch(error => console.error('Error adding to favorites:', error));
+  };
+
   return (
     <section className="my-8 p-4">
     <div className="flex flex-col justify-center items-center text-center">
@@ -79,6 +95,13 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
               className="mt-2 bg-nude text-black py-1 px-2 shadow-lg rounded-full"
             >
               Read More
+            </button>
+
+            <button
+              onClick={() => handleAddToFavorites(book)}
+              className="mt-2 ml-2 text-red-500"
+            >
+              ♥
             </button>
           </div>
         ))}

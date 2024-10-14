@@ -8,6 +8,7 @@ import CoverPage from './pages/CoverPage';
 import Login from './pages/LogIn';
 import SignUp from './pages/SignUp'; 
 import AboutUs from './pages/AboutUs';
+import Favorites from './pages/FavoriteBooks';
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -46,6 +47,8 @@ function App() {
                 <PopularBooks selectedCategory={selectedCategory} />
               </>
             } />
+
+           <Route path="/favorites" element={<Favorites />} />
           </Routes>
       
         </div>
