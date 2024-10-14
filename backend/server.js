@@ -45,6 +45,27 @@ app.get('/books', (req, res) => {
   });
 });
 
+// Route to delete books from favorites
+app.delete('/api/favorites/:book_id', (req, res) => {
+  const bookId = req.params.book_id;
+  
+  const query = 'DELETE FROM favorites WHERE book_id = ?';
+
+  // Execute the query
+  db.query(query, [bookId], (error, results) => {
+    if (error) {
+      return res.status(500).json({ message: 'Error removing favorite book' });
+    }
+    
+    if (results.affectedRows === 0) {
+      return res.status(404).json({ message: 'Book not found in favorites' });
+    }
+
+    res.status(200).json({ message: 'Book removed from favorites successfully' });
+  });
+});
+
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

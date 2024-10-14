@@ -38,13 +38,17 @@ const Sidebar = ({ onCategorySelect, onSearchReset }) => {
             </div>
             <ul className="ml-4 mt-2">
                {['Romance', 'Drama', 'Thriller', 'Self-help', 'Fantasy'].map((category) => (
-              <li key={category} className="hover:bg-nude cursor-pointer hover:text-black p-2 rounded-full" onClick={() => onCategorySelect(category)}>
+              <li key={category} className="hover:bg-nude cursor-pointer hover:text-black p-2 mb-5 rounded-full" onClick={() => onCategorySelect(category)}>
                 🤍 {category} 
               </li>
                 ))}
              </ul>
 
           </li>
+          <li className="mb-4">
+            <Link to="/favorites" className="block py-2 px-2 rounded-full bg-nude text-black hover:bg-white">My Favorites</Link>
+          </li>
+
         </ul>
       </nav>
     </section>

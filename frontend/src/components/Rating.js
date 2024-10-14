@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 const Rating = ({ book_id, user_id }) => {
   const [rating, setRating] = useState(0);
   const [message, setMessage] = useState('');
-  const [originalRating, setOriginalRating] = useState(0);
-  const [hasRated, setHasRated] = useState(false);
+  
   const [messageType, setMessageType] = useState('');
 
   const handleRating = async (value) => {
