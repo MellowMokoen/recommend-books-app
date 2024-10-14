@@ -132,7 +132,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
 
       {selectedBook && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-nude text-black p-4 rounded shadow-xl w-11/12 md:w-1/2 flex flex-col">
+    <div className="bg-white text-black p-4 rounded shadow-black shadow-lg w-11/12 md:w-1/2 flex flex-col">
       <div className="flex">
       <span className="cursor-pointer mr-6 text-black font-bold text-2xl" onClick={closeModal}>&times;</span>
         <img src={selectedBook.cover_image} alt={selectedBook.title} className="w-1/4 h-auto object-cover mr-4 border-2 border-black shadow-lg rounded" />
@@ -146,12 +146,12 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
           </p>
              <Rating book_id={selectedBook.id} />
 
-          <p className="font-semibold mt-4">Overview:</p>
-          <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
+          
         </div>
+        
       </div>
-     
+     <p className="font-semibold mt-4">Overview:</p>
+        <p className="mt-2">{selectedBook.overview}</p>
       
     </div>
   </div>
