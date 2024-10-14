@@ -29,7 +29,7 @@ const FavoriteBooks = () => {
   return (
     <section className="p-4">
       <h2 className="text-3xl font-bold text-nude mb-10">My Favorite Books</h2>
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {favorites.map((book) => (
           <div key={book.id} className="bg-white p-3 mx-4 rounded-lg shadow-md">
             <div className="flex justify-center">

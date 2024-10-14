@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import HeroBanner from './components/HeroBanner';

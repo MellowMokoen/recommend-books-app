@@ -83,19 +83,20 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
     }
   };
 
+
   return (
     <section className="my-8 p-4">
     <div className="flex flex-col justify-center items-center text-center">
-      <h2 className="text-3xl font-bold mb-4">Find Your Next Favorite Book</h2>
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">Find Your Next Favorite Book</h2>
       <input
         type="text"
         placeholder="Search for books or authors..."
         value={searchTerm}
         onChange={handleSearch}
-        className="w-2/3 p-3 rounded-lg shadow-lg text-black mb-24 border-none focus:outline-none"
+        className="w-2/3 md:w-2/3 lg:w-1/2 p-3 rounded-lg shadow-lg text-black mb-12 mt-8 border-none focus:outline-none"
       />
     </div>
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
         {filteredBooks.map((book) => (
           <div key={book.id} className="bg-white p-3 mx-4 rounded-lg shadow-md">
             <div className="flex justify-center">
@@ -105,7 +106,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
                 className="w-50 h-40 object-cover mb-4"
               />
             </div>
-            <h3 className="text-xl font-bold">{book.title}</h3>
+            <h3 className="text-lg sm:text-xl font-bold">{book.title}</h3>
             
             <button
               onClick={() => handleReadMore(book)}
@@ -131,7 +132,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
 
       {selectedBook && (
   <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-nude text-black p-4 rounded shadow-xl w-1/2 flex flex-col">
+    <div className="bg-nude text-black p-4 rounded shadow-xl w-11/12 md:w-1/2 flex flex-col">
       <div className="flex">
       <span className="cursor-pointer mr-6 text-black font-bold text-2xl" onClick={closeModal}>&times;</span>
         <img src={selectedBook.cover_image} alt={selectedBook.title} className="w-1/4 h-auto object-cover mr-4 border-2 border-black shadow-lg rounded" />
