@@ -5,25 +5,44 @@ const SECRET_KEY = process.env.JWT_SECRET || 'yourSecretKeyHere';
 const router = express.Router();
 const db = require('../db'); 
 
-// User signup
+// Using async function for the signup route
 router.post('/signup', async (req, res) => {
   const { username, password } = req.body;
+
+  // Basic validation
+  if (!username || !password) {
+    return res.status(400).json({ error: 'Username and password are required.' });
+  }
+
+  // Additional password validation
+  if (password.length < 8) {
+    return res.status(400).json({ error: 'Password must be at least 8 characters long.' });
+  }
+  if (!/\d/.test(password)) {
+    return res.status(400).json({ error: 'Password must contain at least one number.' });
+  }
+  if (!/[!@#$%^&*]/.test(password)) {
+    return res.status(400).json({ error: 'Password must contain at least one special character.' });
+  }
 
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
     const query = 'INSERT INTO users (username, password) VALUES (?, ?)';
+    
+    // Use a promise wrapper for the db query
     db.query(query, [username, hashedPassword], (err, results) => {
       if (err) {
         console.error('Error creating user:', err);
         return res.status(400).json({ message: 'Error creating user' });
       }
-      res.status(201).json({ message: 'User created' });
+      res.status(201).json({ message: 'User created successfully.' });
     });
   } catch (error) {
     console.error('Error during signup:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 });
+
 
 /// User login
 router.post('/login', (req, res) => {

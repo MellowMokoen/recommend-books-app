@@ -2,8 +2,29 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const [credentials, setCredentials] = useState({ username: '', password: '' });
-  const navigate = useNavigate(); // Use useNavigate hook
+  const [passwordRequirements, setPasswordRequirements] = useState({
+    length: false,
+    number: false,
+    specialChar: false,
+  });
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate(); 
+
+  const checkPasswordStrength = (password) => {
+    setPasswordRequirements({
+      length: password.length >= 8,
+      number: /\d/.test(password),
+      specialChar: /[!@#$%^&*]/.test(password),
+    });
+  };
+
+  const handlePasswordChange = (e) => {
+    const newPassword = e.target.value;
+    setCredentials({ ...credentials, password: newPassword });
+    checkPasswordStrength(newPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,17 +39,21 @@ const SignUp = () => {
     if (response.ok) {
       const data = await response.json();
       console.log('Registration successful', data);
-      // Redirect to login after successful registration
-      navigate('/login');
+      setMessage('Registration successful! Redirecting to login...');
+      setTimeout(() => navigate('/login'), 2000); // Redirect after 2 seconds
     } else {
-      console.error('Registration failed');
-      // Handle registration error
+      const errorData = await response.json();
+      setMessage(errorData.error || 'Registration failed. Please try again.');
     }
   };
 
+
+
   return (
     <div className="flex justify-center items-center h-screen">
+   
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-1/3">
+      {message && <p className="text-green-500 mb-4">{message}</p>}
         <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
         <div className="mb-4">
           <label className="block mb-2" htmlFor="username">Username</label>
@@ -37,29 +62,48 @@ const SignUp = () => {
             id="username"
             value={credentials.username}
             onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-            className="border rounded w-full py-2 px-3"
+            className="border rounded-full w-full py-2 px-3 focus:outline-none shadow-md"
             required
           />
         </div>
         <div className="mb-4">
           <label className="block mb-2" htmlFor="password">Password</label>
           <input
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             id="password"
             value={credentials.password}
-            onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-            className="border rounded w-full py-2 px-3"
+            onChange={handlePasswordChange}
+            className="border rounded-full w-full py-2 px-3 focus:outline-none shadow-md"
             required
           />
+         <button type="button" className='mt-2 mb-2 bg-black text-white rounded-full p-1 text-xs' onClick={() => setShowPassword(!showPassword)}>
+          {showPassword ? 'Hide' : 'Show'}
+         </button>
         </div>
+
+        <div className="mt-2">
+            <p>Password must meet the following requirements:</p>
+            <ul className='mt-4 mb-6'>
+              <li className={passwordRequirements.length ? 'text-green-500' : 'text-red-500'}>
+                {passwordRequirements.length ? '✔️' : '❌'} At least 8 characters
+              </li>
+              <li className={passwordRequirements.number ? 'text-green-500' : 'text-red-500'}>
+                {passwordRequirements.number ? '✔️' : '❌'} At least one number
+              </li>
+              <li className={passwordRequirements.specialChar ? 'text-green-500' : 'text-red-500'}>
+                {passwordRequirements.specialChar ? '✔️' : '❌'} At least one special character
+              </li>
+            </ul>
+          </div>
+        
         <div className="flex justify-between">
-          <button type="submit" className="bg-black text-white py-2 px-4 rounded">
+        <button type="submit" className="bg-nude text-black py-2 px-4 rounded-full" disabled={!Object.values(passwordRequirements).every(Boolean)}>
             Sign Up
           </button>
           <button 
             type="button" 
             onClick={() => navigate('/login')} 
-            className="bg-gray-500 text-white py-2 px-4 rounded ml-4">
+            className="bg-gray-500 text-white py-2 px-4 rounded-full ml-4">
             Go to Login
           </button>
         </div>

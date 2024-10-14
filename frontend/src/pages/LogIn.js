@@ -39,7 +39,7 @@ const Login = () => {
             id="username"
             value={credentials.username}
             onChange={(e) => setCredentials({ ...credentials, username: e.target.value })}
-            className="border rounded w-full py-2 px-3"
+            className="border rounded-full w-full py-2 px-3 focus:outline-none shadow-md"
             required
           />
         </div>
@@ -50,16 +50,16 @@ const Login = () => {
             id="password"
             value={credentials.password}
             onChange={(e) => setCredentials({ ...credentials, password: e.target.value })}
-            className="border rounded w-full py-2 px-3"
+            className="border rounded-full w-full py-2 px-3 focus:outline-none shadow-md"
             required
           />
         </div>
-        <button type="submit" className="bg-black text-white py-2 px-4 rounded">
+        <button type="submit" className="bg-nude text-black py-2 px-4 rounded-full">
           Login
         </button>
         <p className="text-sm text-center">
           Don't have an account?{' '}
-          <Link to="/signup" className="rounded bg-black text-white py-2 px-4">Sign up</Link>
+          <Link to="/signup" className="rounded-full bg-nude text-black py-2 px-4">Sign up</Link>
         </p>
       </form>
     </div>

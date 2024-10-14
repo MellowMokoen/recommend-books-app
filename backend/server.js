@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const db = require('./db');  // Import the MySQL connection
 const path = require('path');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -13,6 +14,9 @@ app.use(cors());
 app.get('/', (req, res) => {
   res.send('Backend is running!');
 });
+
+// Use the routes
+app.use('/api', userRoutes);
 
 // Serve the 'uploads' folder as static
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -30,9 +34,6 @@ app.get('/api/books', (req, res) => {
     });
   });
 
-const userRoutes = require('./routes/user');
-
-app.use('/api', userRoutes);
 
 // Route to get all books from the database
 app.get('/books', (req, res) => {
