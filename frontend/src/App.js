@@ -16,14 +16,22 @@ function App() {
     setSelectedCategory(category);
   };
 
-  const location = useLocation(); // Use this here in App component
+  const handleSearchReset = () => {
+    console.log("Search reset"); 
+  };
+
+  const location = useLocation(); 
   const shouldShowSidebar = !['/', '/login', '/signup'].includes(location.pathname);
 
 
   return (
       <div className="App">
     
-      {shouldShowSidebar && <Sidebar onCategorySelect={handleCategorySelect} />}
+    {shouldShowSidebar && 
+        <Sidebar 
+          onCategorySelect={handleCategorySelect} 
+          onSearchReset={handleSearchReset} 
+        />}
   
       <div className={shouldShowSidebar ? 'ml-64' : ''}>
   
