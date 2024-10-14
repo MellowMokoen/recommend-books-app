@@ -68,7 +68,7 @@ router.post('/login', (req, res) => {
 
 // Fetch books endpoint
 router.get('/books', (req, res) => {
-  const query = 'SELECT id, title, author, cover_image, rating_count FROM books';
+  const query = 'SELECT id, title, author, category, published_year, cover_image, rating_count, overview FROM books';
   db.query(query, (err, results) => {
     if (err) {
       return res.status(500).json({ message: 'Error fetching books' });

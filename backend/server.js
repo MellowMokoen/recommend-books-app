@@ -23,16 +23,17 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Route to get all books
 app.get('/api/books', (req, res) => {
-    const query = 'SELECT * FROM books'; // Fetch all books from the 'books' table
-    db.query(query, (err, results) => {
+  const query = 'SELECT * FROM books'; // Fetch all books from the 'books' table
+  db.query(query, (err, results) => {
       if (err) {
-        console.error('Error fetching books: ', err);
-        res.status(500).json({ message: 'Server error' });
-      } else {
-        res.json(results); // Send the results back to the client
+          console.error('Error fetching books: ', err);
+          return res.status(500).json({ message: 'Server error' });
       }
-    });
+      console.log('Fetched books:', results); // Log the results
+      res.json(results); // Send the results back to the client
   });
+});
+
 
 
 // Route to get all books from the database

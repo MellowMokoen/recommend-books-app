@@ -14,6 +14,9 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
       .then(response => response.json())
       .then(data => {
         setBooks(data);
+        data.forEach(book => {
+          console.log(book.category, book.rating, book.overview, book.published_year);
+        }); 
         setFilteredBooks(data); // Initialize filteredBooks with all books
       })
       .catch(error => console.error('Error fetching books:', error));
@@ -27,6 +30,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
       setFilteredBooks(books);
     }
   }, [selectedCategory, books]);
+  
 
   const handleReadMore = (book) => {
     setSelectedBook(book);
@@ -151,7 +155,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
         
       </div>
      <p className="font-semibold mt-4">Overview:</p>
-        <p className="mt-2">{selectedBook.overview}</p>
+      <p className="mt-2 text-black">{selectedBook.overview}</p>
       
     </div>
   </div>
