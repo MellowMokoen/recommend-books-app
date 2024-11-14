@@ -14,9 +14,7 @@ const PopularBooks = ({ selectedCategory, onSearchReset }) => {
       .then(response => response.json())
       .then(data => {
         setBooks(data);
-        data.forEach(book => {
-          console.log(book.category, book.rating, book.overview, book.published_year);
-        }); 
+        
         setFilteredBooks(data); // Initialize filteredBooks with all books
       })
       .catch(error => console.error('Error fetching books:', error));

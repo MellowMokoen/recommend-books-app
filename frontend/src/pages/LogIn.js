@@ -4,17 +4,24 @@ import { useNavigate, Link } from 'react-router-dom';
 const Login = () => {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch('http://localhost:5000/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(credentials),
-    });
+    setLoading(true); // Show loading animation when the request starts
+
+    // Simulating a small delay before checking the credentials
+    setTimeout(async () => {
+      const response = await fetch('http://localhost:5000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(credentials),
+      });
+
+    setLoading(false); // Hide loading animation when the request is done
 
     if (response.ok) {
       const data = await response.json();
@@ -25,6 +32,7 @@ const Login = () => {
       const errorData = await response.json();
       setErrorMessage(errorData.message); // Display error message
     }
+  }, 1000); // Simulate a 1-second delay
   };
 
   return (
@@ -32,6 +40,16 @@ const Login = () => {
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-1/3">
         <h2 className="text-2xl font-bold mb-4">Login</h2>
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
+        {/* Loading spinner */}
+        {loading && (
+          <div className="flex justify-center mb-4">
+            <div className="spinner-border animate-spin inline-block w-8 h-8 border-4 border-t-transparent rounded-full" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
+        )}
+
         <div className="mb-4">
           <label className="block mb-2" htmlFor="username">Username</label>
           <input
